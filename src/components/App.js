@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "./Modal";
 
 const BUTTON_WRAPPER_STYLES = {
   position: "relative",
@@ -7,16 +8,21 @@ const BUTTON_WRAPPER_STYLES = {
 
 const OTHER_CONTENT_STYLES = {
   position: "relative",
-  zIndex: 1,
+  zIndex: 2,
   backgroundColor: "red",
   padding: "10px",
 };
 
 const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
       <div style={BUTTON_WRAPPER_STYLES}>
-        <button>Open Modal</button>
+        <button onClick={() => setIsOpen(true)}>Open Modal</button>
+
+        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+          Fancy Modal
+        </Modal>
       </div>
 
       <div style={OTHER_CONTENT_STYLES}>Other Content</div>
